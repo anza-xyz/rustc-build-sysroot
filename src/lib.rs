@@ -404,6 +404,9 @@ panic = 'unwind'
 {crates}
 
 {patches}
+
+[patch.crates-io]
+compiler_builtins = {{ git = "https://github.com/anza-xyz/compiler-builtins", tag = "solana-tools-v1.43" }}
             "#
         )
     }
@@ -424,6 +427,7 @@ panic = 'unwind'
         let cargo = self.cargo.take().unwrap_or_else(|| {
             Command::new(env::var_os("CARGO").unwrap_or_else(|| OsString::from("cargo")))
         });
+
         let rustc_version = match self.rustc_version.take() {
             Some(v) => v,
             None => rustc_version::version_meta()?,
@@ -545,7 +549,6 @@ panic = 'unwind'
         fs::create_dir_all(&sysroot_target_dir.parent().unwrap())
             .context("failed to create target directory")?;
         fs::rename(staging_dir.path(), sysroot_target_dir).context("failed installing sysroot")?;
-
         Ok(SysrootStatus::SysrootBuilt)
     }
 }
