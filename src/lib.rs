@@ -406,7 +406,7 @@ panic = 'unwind'
 {patches}
 
 [patch.crates-io]
-compiler_builtins = {{ git = "https://github.com/anza-xyz/compiler-builtins", tag = "solana-tools-v1.43" }}
+compiler_builtins = {{ git = "https://github.com/anza-xyz/compiler-builtins", tag = "solana-tools-v1.44" }}
             "#
         )
     }
